@@ -52,10 +52,32 @@ function checkZipcode() {
     }
 }
 
-function checkPassword() {
+function passwordRegExp(str) {
+    return /^(?=[a-zA-Z0-9#@$?!-]{8,}$)(?=.?[a-z])(?=.?[A-Z])(?=.?[0-9])./.test(
+      str
+    );
+  }
+
+async function checkPassword() {
     const error = document.querySelector('.password-error');
+    const regex = /^(?=.*?[0-9])(?=.*\W).*$/;
+    const test = await regex.test(password.value)
     if (password.validity.tooShort) {
         error.textContent = 'Password must be at least 10 characters.';
+        error.classList.remove('hidden');
+    } else if (test === false) {
+        error.textContent = 'Password must contain at least one number and one special character.';
+        error.classList.remove('hidden');
+    } else if(test === true) {
+        error.textContent = '';
+        console.log('working');
+    }
+}
+
+function checkConfirmPass() {
+    const error = document.querySelector('.confirm-password-error');
+    if (password.value !== confirmPass.value) {
+        error.textContent = 'Passwords must match';
         error.classList.remove('hidden');
     } else {
         if (!error.classList.contains('hidden')) {
@@ -70,3 +92,4 @@ email.addEventListener('input', checkEmail);
 country.addEventListener('input', checkCountry);
 zipcode.addEventListener('input', checkZipcode);
 password.addEventListener('input', checkPassword);
+confirmPass.addEventListener('input', checkConfirmPass);
