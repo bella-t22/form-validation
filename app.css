@@ -20,7 +20,7 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     padding: 0 50px;
 }
 
@@ -45,6 +45,14 @@ input {
     padding: 0 5px;
 }
 
+input:invalid {
+    border: 1px solid red;
+}
+
+input:valid {
+    border: 1px solid green;
+}
+
 button {
     width: 100px;
     height: 40px;
@@ -53,4 +61,14 @@ button {
     background-color: rgb(71, 71, 71);
     color: white;
     align-self: center;
+    margin-top: 10px;
+}
+
+span {
+    font-size: .8rem;
+    color: red;
+}
+
+.hidden {
+    display: none;
 }
