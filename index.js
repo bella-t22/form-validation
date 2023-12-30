@@ -3,6 +3,7 @@ const country = document.querySelector('#country');
 const zipcode = document.querySelector('#zipcode');
 const password = document.querySelector('#password');
 const confirmPass = document.querySelector('#confirm-password');
+const submit = document.querySelector('button');
 
 function checkEmail() {
     const error = document.querySelector('.email-error');
@@ -88,8 +89,17 @@ function checkConfirmPass() {
     }
 }
 
+function submitForm() {
+    if (!email.validity.valid || !country.validity.valid || !zipcode.validity.valid || !password.validity.valid || !confirmPass.validity.valid) {
+        return alert('Please finish filling out the form.');
+    } else {
+        return alert('High five! You succesfully submitted the form!');
+    }
+}
+
 email.addEventListener('input', checkEmail);
 country.addEventListener('input', checkCountry);
 zipcode.addEventListener('input', checkZipcode);
 password.addEventListener('input', checkPassword);
 confirmPass.addEventListener('input', checkConfirmPass);
+submit.addEventListener('click', submitForm);
